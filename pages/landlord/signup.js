@@ -190,9 +190,13 @@ export default function SignUp() {
 											placeholder="123 456 7890"
 											{...register('phoneNumber', {
 												required: 'This is required',
-												pattern: {
-													value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-													message: 'invalid phone number format',
+												minLength: {
+													value: 10,
+													message: 'Please enter a valid US number',
+												},
+												maxLength: {
+													value: 10,
+													message: 'Please enter a valid US number',
 												},
 											})}
 										/>
@@ -225,8 +229,7 @@ export default function SignUp() {
 											{...register('password', {
 												required: 'This is required',
 												pattern: {
-													value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-													message: 'invalid email address',
+													message: 'confirmed password does not match',
 												},
 											})}
 										/>
@@ -270,8 +273,7 @@ export default function SignUp() {
 											{...register('confirmPassword', {
 												required: 'This is required',
 												pattern: {
-													value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-													message: 'invalid email address',
+													message: 'confirmed password does not match',
 												},
 											})}
 										/>
@@ -290,6 +292,7 @@ export default function SignUp() {
 									</FormErrorMessage>
 								</FormControl>
 								<Button
+									width="570px"
 									mt={4}
 									colorScheme="teal"
 									isLoading={isSubmitting}
@@ -446,8 +449,7 @@ export default function SignUp() {
 									<FormControl
 										isInvalid={errors.companyPhoneNumber}
 										w="250px"
-										mt={6}
-										mr={16}>
+										mt={6}>
 										<FormLabel htmlFor="companyPhoneNumber">
 											<Box d="flex">
 												Company Number
@@ -457,7 +459,7 @@ export default function SignUp() {
 											</Box>
 										</FormLabel>
 
-										<InputGroup>
+										<InputGroup width="320px">
 											<InputLeftAddon>
 												<PhoneIcon />
 											</InputLeftAddon>
@@ -483,13 +485,14 @@ export default function SignUp() {
 
 									<FormControl
 										isInvalid={errors.phoneExtention}
-										w="250px"
-										mt={6}>
+										w="200px"
+										mt={6}
+										ml={40}>
 										<FormLabel htmlFor="phoneExtention">
 											<Box d="flex">Extention #</Box>
 										</FormLabel>
 
-										<InputGroup>
+										<InputGroup width="160px">
 											<Input
 												type="number"
 												id="phoneExtention"
