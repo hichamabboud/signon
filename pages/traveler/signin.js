@@ -108,7 +108,11 @@ export default function SignIn() {
 							</Stack>
 						</form>
 						<hr />
-						<Box alignSelf="center">Forgot my password</Box>
+						<Box alignSelf="center">
+							<NextLink href="/recover-password" passHref>
+								<Link> Forgot my password </Link>
+							</NextLink>
+						</Box>
 					</Stack>
 				</Box>
 			</HStack>
