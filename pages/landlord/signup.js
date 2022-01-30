@@ -42,6 +42,12 @@ export default function SignUp() {
 	const handleShowPassword = () => {
 		setShowPassword(!showPassword);
 	};
+
+	const [showConfirmedPassword, setConfirmedShowPassword] = useState(false);
+	const handleConfirmedShowPassword = () => {
+		setConfirmedShowPassword(!showConfirmedPassword);
+	};
+
 	return (
 		<>
 			<Head>
@@ -84,8 +90,11 @@ export default function SignUp() {
 						<TabPanel>
 							<form onSubmit={handleSubmit(onSubmit)}>
 								<Box d="flex">
-									<FormControl isInvalid={errors.firstName} w="250px" mr={16}>
-										<FormLabel htmlFor="firstName">
+									<FormControl
+										isInvalid={errors.landlordFirstName}
+										w="250px"
+										mr={16}>
+										<FormLabel htmlFor="landlordFirstName">
 											<Box d="flex">
 												First name
 												<Text color="red" ml={2}>
@@ -94,9 +103,9 @@ export default function SignUp() {
 											</Box>
 										</FormLabel>
 										<Input
-											id="firstName"
+											id="landlordFirstName"
 											placeholder="first name"
-											{...register('firstName', {
+											{...register('landlordFirstName', {
 												required: 'This is required',
 												minLength: {
 													value: 4,
@@ -105,12 +114,13 @@ export default function SignUp() {
 											})}
 										/>
 										<FormErrorMessage>
-											{errors.firstName && errors.firstName.message}
+											{errors.landlordFirstName &&
+												errors.landlordFirstName.message}
 										</FormErrorMessage>
 									</FormControl>
 
-									<FormControl isInvalid={errors.lastName} w="250px">
-										<FormLabel htmlFor="lastName">
+									<FormControl isInvalid={errors.landlordLastName} w="250px">
+										<FormLabel htmlFor="landlordLastName">
 											<Box d="flex">
 												Last name
 												<Text color="red" ml={2}>
@@ -119,9 +129,9 @@ export default function SignUp() {
 											</Box>
 										</FormLabel>
 										<Input
-											id="lastName"
+											id="landlordLastName"
 											placeholder="last name"
-											{...register('lastName', {
+											{...register('landlordLastName', {
 												required: 'This is required',
 												minLength: {
 													value: 4,
@@ -130,7 +140,8 @@ export default function SignUp() {
 											})}
 										/>
 										<FormErrorMessage>
-											{errors.lastName && errors.lastName.message}
+											{errors.landlordLastName &&
+												errors.landlordLastName.message}
 										</FormErrorMessage>
 									</FormControl>
 								</Box>
@@ -267,7 +278,7 @@ export default function SignUp() {
 											<LockIcon />
 										</InputLeftAddon>
 										<Input
-											type={!showPassword ? 'password' : 'text'}
+											type={!showConfirmedPassword ? 'password' : 'text'}
 											id="confirmPassword"
 											placeholder="********"
 											{...register('confirmPassword', {
@@ -281,8 +292,8 @@ export default function SignUp() {
 											<Button
 												h="1.75rem"
 												size="sm"
-												onClick={handleShowPassword}>
-												{showPassword ? 'Hide' : 'Show'}
+												onClick={handleConfirmedShowPassword}>
+												{showConfirmedPassword ? 'Hide' : 'Show'}
 											</Button>
 										</InputRightElement>
 									</InputGroup>
@@ -361,7 +372,7 @@ export default function SignUp() {
 									</FormControl>
 								</Box>
 
-								{/* ----------------------------------------------------------------------Company information----------------------------------------------------------------------------------------  */}
+								{/* -----Company information-------  */}
 
 								<Box d="flex" mt={6}>
 									<FormControl isInvalid={errors.companyName} w="250px" mr={16}>
